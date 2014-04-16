@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ro.WebClient.play_button">
+        <div class="oe_topbar_item oe_timezone_systray" title="Play Ragnarok Online">
+            <span class="ui-icon ui-state-error ui-icon-alert"/>
+        </div>
+    </t>
+</templates>

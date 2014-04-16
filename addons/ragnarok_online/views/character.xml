@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="character_view_form" model="ir.ui.view">
+            <field name="name">Character Form</field>
+            <field name="model">ro.character</field>
+            <field name="arch" type="xml">
+                <form string="Character" version="7.0">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="user_id"/>
+                            <field name="playable"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="character_view_tree" model="ir.ui.view">
+            <field name="name">Character Tree</field>
+            <field name="model">ro.character</field>
+            <field name="arch" type="xml">
+                <tree string="Characters" version="7.0">
+                    <field name="name" widget="cst_name"/>
+                    <field name="user_id"/>
+                    <field name="playable"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

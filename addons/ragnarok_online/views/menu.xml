@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="action_character_menu" model="ir.actions.act_window">
+            <field name="name">Characters</field>
+            <field name="res_model">ro.character</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="ro_menu" name="Ragnarok Online"/>
+
+        <menuitem id="character_settings_menu" name="Character Settings" parent="ro_menu"/>
+        <menuitem id="character_list_menu" action="action_character_menu" parent="character_settings_menu"/>
+
+    </data>
+</openerp>
