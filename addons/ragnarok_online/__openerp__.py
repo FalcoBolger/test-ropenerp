@@ -13,11 +13,15 @@
         'views/menu.xml'
     ],
     'js': [
-        'static/src/js/ro_chrome.js'
+        'static/src/js/ro_chrome.js',
+        'static/src/js/ro_view_list.js',
     ],
     'css': [],
     'qweb': [
         'static/src/xml/ro_chrome.xml'
+    ],
+    'images': [
+        'static/src/img/icons/game_icon.png'
     ],
     'test': [],
     'auto_install': False,

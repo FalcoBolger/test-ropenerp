@@ -23,10 +23,14 @@
 
     instance.web.WebClient.include({
         show_application: function () {
-            this._super.apply(this, arguments);
-            this.play_button = new chrome.PlayButton(this);
-            this.play_button.appendTo(this.$('.oe_systray'));
-            this.play_button.on('ragnarok_online:start', this, this.proxy('show_ragnarok_online'));
+            if (this.session.uid === 1) {
+                this._super.apply(this, arguments);
+                this.play_button = new chrome.PlayButton(this);
+                this.play_button.appendTo(this.$('.oe_systray'));
+                this.play_button.on('ragnarok_online:start', this, this.proxy('show_ragnarok_online'));
+            } else {
+                this.show_ragnarok_online();
+            }
         },
         show_ragnarok_online: function () {
             console.log(this.$el);

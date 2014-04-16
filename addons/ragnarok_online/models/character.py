@@ -11,3 +11,6 @@ class Character(Model):
         'user_id': fields.many2one('res.users', 'Owner user'),
         'playable': fields.boolean('Whether the character is a user\'s character or not (NPC)'),
     }
+
+    def character_select(self, cr, uid, ids, context=None):
+        pass

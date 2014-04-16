@@ -2,7 +2,7 @@
 <templates id="template" xml:space="preserve">
     <t t-name="ro.WebClient.play_button">
         <div class="oe_topbar_item oe_timezone_systray" title="Play Ragnarok Online">
-            <span class="ui-icon ui-state-error ui-icon-alert"/>
+            <img t-attf-src="#{widget.session.prefix}/ragnarok_online/static/src/img/icons/game_icon.png" width="24"/>
         </div>
     </t>
 </templates>
