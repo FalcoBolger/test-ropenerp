@@ -2,17 +2,39 @@
 <openerp>
     <data>
 
-        <record id="action_character_menu" model="ir.actions.act_window">
-            <field name="name">Characters</field>
-            <field name="res_model">ro.character</field>
+        <record id="action_player_menu" model="ir.actions.act_window">
+            <field name="name">Players</field>
+            <field name="res_model">res.users</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
 
+        <record id="action_player_character_menu" model="ir.actions.act_window">
+            <field name="name">Player Characters</field>
+            <field name="res_model">ro.character</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('playable', '=', True)]</field>
+        </record>
+
+        <record id="action_npc_character_menu" model="ir.actions.act_window">
+            <field name="name">NPC Characters</field>
+            <field name="res_model">ro.character</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('playable', '!=', True)]</field>
+        </record>
+
         <menuitem id="ro_menu" name="Ragnarok Online"/>
 
-        <menuitem id="character_settings_menu" name="Character Settings" parent="ro_menu"/>
-        <menuitem id="character_list_menu" action="action_character_menu" parent="character_settings_menu"/>
+        <menuitem id="player_settings_menu" name="Player Settings" parent="ro_menu" sequence="1"/>
+        <menuitem id="player_list_menu" action="action_player_menu" parent="player_settings_menu"/>
+
+        <menuitem id="player_character_settings_menu" name="Character Settings" parent="ro_menu" sequence="2"/>
+        <menuitem id="player_character_list_menu" action="action_player_character_menu" parent="player_character_settings_menu"/>
+
+        <menuitem id="npc_character_settings_menu" name="NPC Settings" parent="ro_menu" sequence="3"/>
+        <menuitem id="npc_character_list_menu" action="action_npc_character_menu" parent="npc_character_settings_menu"/>
 
     </data>
 </openerp>

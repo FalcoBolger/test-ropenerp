@@ -20,8 +20,13 @@
                     <sheet>
                         <group>
                             <field name="name"/>
-                            <field name="user_id"/>
-                            <field name="playable"/>
+                            <field name="user_id" attrs="{
+                                    'invisible': [
+                                        ('playable', '!=', True),
+                                    ],
+                                }"
+                            />
+                            <field name="playable" required="1"/>
                         </group>
                     </sheet>
                 </form>
@@ -35,12 +40,7 @@
                 <tree string="Characters" version="7.0">
                     <field name="name"/>
                     <field name="playable"/>
-                    <field name="user_id" attrs="{
-                            'invisible': [
-                                ('playable', '!=', True),
-                            ],
-                        }"
-                    />
+                    <field name="user_id"/>
                     <button string="Play as this character"
                         name="character_select" type="object"
                         icon="STOCK_GO_FORWARD" attrs="{

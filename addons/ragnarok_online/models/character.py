@@ -10,7 +10,17 @@ class Character(Model):
         'name': fields.char('Name of the character'),
         'user_id': fields.many2one('res.users', 'Owner user'),
         'playable': fields.boolean('Whether the character is a user\'s character or not (NPC)'),
+        'type': fields.selection([
+            ('npc', 'NPC'),
+            ('monster', 'Monster'),
+            ('player', 'Player')
+        ], 'Character type'),
     }
 
+    # On change methods
+    def onchange_type(self, cr, uid, ids, type, context=None):
+        pass
+
+    # Button methods
     def character_select(self, cr, uid, ids, context=None):
         pass

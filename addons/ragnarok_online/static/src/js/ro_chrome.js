@@ -21,19 +21,29 @@
         },
     });
 
+    chrome.RagnarokOnlineClient = instance.web.FullscreenWidget.extend({});
+
+    chrome.CharacterManager = instance.web.Widget.extend({});
+
     instance.web.WebClient.include({
         show_application: function () {
             if (this.session.uid === 1) {
                 this._super.apply(this, arguments);
                 this.play_button = new chrome.PlayButton(this);
                 this.play_button.appendTo(this.$('.oe_systray'));
-                this.play_button.on('ragnarok_online:start', this, this.proxy('show_ragnarok_online'));
+                this.play_button.on('ragnarok_online:start', this, function () {
+                    this.hide_application();
+                    this.show_ragnarok_online();
+                });
             } else {
                 this.show_ragnarok_online();
             }
         },
         show_ragnarok_online: function () {
             console.log(this.$el);
+        },
+        hide_application: function () {
+
         },
     });
 })();
