@@ -1,12 +1,22 @@
 from openerp.osv import fields
-from . import Character
+from openerp.osv.osv import Model
 
 
-class PlayerCharacter(Character):
+class PlayerCharacter(Model):
     _name = 'ro.player.character'
+    _inherits = {
+        'ro.character': 'base_character_id'
+    }
     _description = 'Ragnarok Online Player Character'
 
     _columns = {
+        'user_id': fields.many2one('res.users', 'Owner user'),
+        'base_character_id': fields.many2one(
+            'ro.character',
+            required=True,
+            ondelete='restrict',
+            string='Related Base Character'
+        ),
         # Levels and Experience
         'base_level': fields.integer('LV'),
         'job_level': fields.integer('JobLV'),
@@ -32,3 +42,10 @@ class PlayerCharacter(Character):
             ('female', 'Female')
         ]),
     }
+
+    _defaults = {
+        'type': 'player',
+    }
+
+    def character_select(self, cr, uid, ids, context=None):
+        pass

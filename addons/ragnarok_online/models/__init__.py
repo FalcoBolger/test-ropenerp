@@ -1,3 +1,5 @@
 import user
 import character
 import character_player
+import character_npc
+import character_monster

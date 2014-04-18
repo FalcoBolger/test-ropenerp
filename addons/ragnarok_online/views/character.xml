@@ -4,29 +4,18 @@
 
         <record id="character_view_form" model="ir.ui.view">
             <field name="name">Character Form</field>
-            <field name="model">ro.character</field>
+            <field name="model">ro.player.character</field>
             <field name="arch" type="xml">
                 <form string="Character" version="7.0">
                     <header>
                         <button string="Play as this character"
                             name="character_select" type="object"
-                            attrs="{
-                                'invisible': [
-                                    ('playable', '!=', True),
-                                ],
-                            }"
                         />
                     </header>
                     <sheet>
                         <group>
                             <field name="name"/>
-                            <field name="user_id" attrs="{
-                                    'invisible': [
-                                        ('playable', '!=', True),
-                                    ],
-                                }"
-                            />
-                            <field name="playable" required="1"/>
+                            <field name="user_id"/>
                         </group>
                     </sheet>
                 </form>
@@ -35,19 +24,14 @@
 
         <record id="character_view_tree" model="ir.ui.view">
             <field name="name">Character Tree</field>
-            <field name="model">ro.character</field>
+            <field name="model">ro.player.character</field>
             <field name="arch" type="xml">
                 <tree string="Characters" version="7.0">
                     <field name="name"/>
-                    <field name="playable"/>
                     <field name="user_id"/>
                     <button string="Play as this character"
                         name="character_select" type="object"
-                        icon="STOCK_GO_FORWARD" attrs="{
-                            'invisible': [
-                                ('playable', '!=', True),
-                            ],
-                        }"
+                        icon="STOCK_GO_FORWARD"
                     />
                 </tree>
             </field>

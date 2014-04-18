@@ -13,6 +13,7 @@
         'views/menu.xml'
     ],
     'js': [
+        'static/lib/three.js/build/three.min.js',
         'static/src/js/ro_chrome.js',
         'static/src/js/ro_view_list.js',
     ],
