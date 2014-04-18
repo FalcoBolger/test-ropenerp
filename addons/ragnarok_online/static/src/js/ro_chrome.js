@@ -67,6 +67,11 @@
         className: 'RagnarokOnlineClient',
         init: function (parent) {
             this._super(parent);
+            _.bindAll(this, "animate", "render", "_onWindowResize", "_onDocumentMouseMove");
+            this.mouseX = 0;
+            this.mouseY = 0;
+            this.windowHalfX = window.innerWidth / 2;
+            this.windowHalfY = window.innerHeight / 2;
         },
         start: function () {
             var d = this._super.apply(this, arguments);
@@ -75,8 +80,6 @@
             return d;
         },
         initialize: function () {
-            var self = this;
-
             this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
             this.camera.position.z = 500;
 
@@ -112,8 +115,8 @@
 
             this.$el.append($(this.renderer.domElement));
 
-            this.$el.on('mousemove', this._onDocumentMouseMove);
-            $(window).on('resize', _.bind(self._onWindowResize, self));
+            $(document).on('mousemove', this._onDocumentMouseMove);
+            $(window).on('resize', this._onWindowResize);
 
             this.animate();
         },
@@ -186,8 +189,7 @@
             this.mouseY = event.clientY - this.windowHalfY;
         },
         animate: function () {
-            var self = this;
-            window.requestAnimationFrame(_.bind(self.render, self));
+            window.requestAnimationFrame(this.animate);
             this.render();
         },
         render: function () {
