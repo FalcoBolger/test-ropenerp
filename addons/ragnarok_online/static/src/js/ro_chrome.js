@@ -62,17 +62,6 @@
     var QWeb = instance.web.qweb;
     var _t = instance.web._t;
 
-    chrome.PlayButton = instance.web.Widget.extend({
-        template: 'ro.WebClient.play_button',
-        start: function () {
-            var self = this;
-            this.$('span.ui-icon').click(function (e) {
-                self.trigger('ragnarok_online:start');
-            });
-            return this._super();
-        },
-    });
-
     chrome.RagnarokOnlineClient = instance.web.FullscreenWidget.extend({
         tagName: 'div',
         className: 'RagnarokOnlineClient',
@@ -81,6 +70,7 @@
         },
         start: function () {
             var d = this._super.apply(this, arguments);
+            // TODO: Set state
             this.initialize();
             return d;
         },
@@ -127,7 +117,6 @@
 
             this.animate();
         },
-
         _generateHeight: function (width, height) {
             var data = Float32Array ? new Float32Array( width * height ) : [], perlin = new ImprovedNoise(),
             size = width * height, quality = 2, z = Math.random() * 100;
@@ -212,28 +201,32 @@
 
     chrome.CharacterManager = instance.web.Widget.extend({});
 
+    chrome.PlayButton = instance.web.Widget.extend({
+        template: 'ro.WebClient.play_button',
+    });
+
     instance.web.WebClient.include({
         init: function () {
             this._super.apply(this, arguments);
         },
         show_application: function () {
+            var self = this;
             if (this.session.uid === 1) {
                 this._super.apply(this, arguments);
                 this.play_button = new chrome.PlayButton(this);
                 this.play_button.appendTo(this.$('.oe_systray'));
-                this.play_button.on('ragnarok_online:start', this, function () {
-                    this.hide_application();
-                    this.show_ragnarok_online();
-                });
+                this.play_button.$el.click(_.bind(self.show_ragnarok_online, self));
             } else {
                 this.show_ragnarok_online();
             }
         },
         show_ragnarok_online: function () {
+            this.hide_application();
             this.ro_client = new chrome.RagnarokOnlineClient(this);
             this.ro_client.appendTo(this.$el);
         },
         hide_application: function () {
+            this.$('.oe_webclient').hide();
         },
     });
 })();
